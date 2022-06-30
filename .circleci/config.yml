@@ -4,7 +4,7 @@ jobs: # we now have TWO jobs, so that a workflow can coordinate them!
     steps:
       - add_ssh_keys:
           fingerprints:
-            - "DVvDVwq0elwRvgJTuXToOKj8JZIYaL7iVinVDzy9u08"
+            - "SHA256:jfWZIfyFQtUjazAc4JZPLdhSbmAw1OwQwsFpH93Pa1M edisonedogun@gmail.com"
   one: # This is our first job.
     docker: # it uses the docker executor
       - image: cimg/ruby:2.6.8 # specifically, a docker image with ruby 2.6.8
