@@ -1,10 +1,10 @@
-version: 2
-jobs:
+version: 2          
+jobs: # we now have TWO jobs, so that a workflow can coordinate them!
   deploy-job:
     steps:
       - add_ssh_keys:
           fingerprints:
-jobs: # we now have TWO jobs, so that a workflow can coordinate them!
+            - "DVvDVwq0elwRvgJTuXToOKj8JZIYaL7iVinVDzy9u08"
   one: # This is our first job.
     docker: # it uses the docker executor
       - image: cimg/ruby:2.6.8 # specifically, a docker image with ruby 2.6.8
