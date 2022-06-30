@@ -1,4 +1,11 @@
 version: 2
+jobs:
+  deploy-job:
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "DVvDVwq0elwRvgJTuXToOKj8JZIYaL7iVinVDzy9u08"
+
 jobs: # we now have TWO jobs, so that a workflow can coordinate them!
   one: # This is our first job.
     docker: # it uses the docker executor
