@@ -6,6 +6,9 @@ commands:
      id:
       type: string
     steps:
+     - add_ssh_keys:
+          fingerprints:
+            - "SHA256:jfWZIfyFQtUjazAc4JZPLdhSbmAw1OwQwsFpH93Pa1M edisonedogun@gmail.com"
       - run: echo <<parameters.id>>
 
 jobs:
