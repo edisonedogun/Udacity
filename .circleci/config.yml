@@ -1,25 +1,31 @@
 version: 2.1
 
-commands:
-  print_pipeline_id:
-    parameters:
-     id:
-      type: string
-    steps:
-     - add_ssh_keys:
-          fingerprints:
-            - "SHA256:jfWZIfyFQtUjazAc4JZPLdhSbmAw1OwQwsFpH93Pa1M edisonedogun@gmail.com"
-      - run: echo <<parameters.id>>
-
 jobs:
-  my_job:
+  save_hello_world_output:
     docker:
       - image: circleci/node:13.8.0
     steps:
-      - print_pipeline_id:
-          id: <<pipeline.id>>
+      - add_ssh_keys:
+          fingerprints:
+            - "SHA256:jfWZIfyFQtUjazAc4JZPLdhSbmAw1OwQwsFpH93Pa1M edisonedogun@gmail.com"
+      - run: echo "hello world" > ~/output.txt
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - output.txt
+
+  print_output_file:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run: cat ~/output.txt
 
 workflows:
   my_workflow:
     jobs:
-      - my_job
+      - save_hello_world_output
+      - print_output_file:
+          requires:
+            - save_hello_world_output
