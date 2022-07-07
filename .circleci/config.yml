@@ -1,11 +1,5 @@
 version: 2.1
-
 jobs:
-  deploy-job:
-    steps:
-      - add_ssh_keys:
-          fingerprints:
-            - "SHA256:RsUBd7jL/UmKCo8+TtHDlcJSJh1tL+sccKmtnqXAntM edisonedogun@gmail.com"
   print_hello:
     docker:
       - image: circleci/node:13.8.0
@@ -21,7 +15,6 @@ workflows:
   welcome:
     # Run the welcome/run job in its own container
     jobs:
-      - welcome/run
       - print_hello
       - print_world:
           requires:
